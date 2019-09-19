@@ -19,7 +19,7 @@ def dashboard(request):
     except Team.DoesNotExist:
         team={}
     try:
-        teams=Team.objects.all()
+        teams=Team.objects.all().order_by('-owner_points')
     except Team.DoesNotExist:
         teams={}
     return render(request, 'dashboard/dashboard.html',{
