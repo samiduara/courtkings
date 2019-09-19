@@ -1,10 +1,19 @@
 * {
     list-style:none;
+    font-family: 'Titillium Web', sans-serif;
 }
 body {
     display:flex;
     min-height:100vh;
     flex-direction:column;
+    position: relative;
+    background: url(court_kings.jpg);
+    background-size:cover;
+    background-attachment: fixed;
+}
+h1, h2, h3, h4, h5, h6, p{
+    font-family: 'Titillium Web', sans-serif;
+    color: white;
 }
 main {
     flex:1 0 auto;
@@ -24,9 +33,10 @@ footer {
     height:100%;
     width:100vh;
 }
-/* #context{
-    border:1px solid black;
-    max-height: 500px;
-    max-width: 500px;
-    overflow: scroll;
-} */
+
+img {
+    height: 50px;
+    border-radius: 10px;
+    margin: 0;
+    padding: 0;
+}

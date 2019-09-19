@@ -13,7 +13,6 @@ urlpatterns = [
   path('dashboard/simulate_day/', views.simulate_day, name='simulate_day'),
   path('dashboard/results/', views.results, name='results'),
   path('dashboard/start_league/', views.start_league, name='start_league'),
-  
+  path('dashboard/ranking_results/', views.ranking_results, name='ranking_results')
 ]
 
-"""   path('dashboard/results/<int:day_num>/', views.dayresults, name='dayresults'), """

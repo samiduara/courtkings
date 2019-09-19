@@ -6,15 +6,13 @@
     <div class='ui center aligned container'>
         <h1>Welcome To Your Dream Team!</h1>
     </div>
-    <!-- <div class='ui sticky'> -->
     <div class='ui left aligned grid'>
-        <div class="eight wide column left floated">
+        <div class="four wide column left floated">
                 <h2>{{team.team_name}}</h2>
                 {% for player in myplayers %}
-                <!-- {% if player.status == False %} -->
                 <div class='ui fluid card'>
                     <div class='image'>
-                        <img src="" alt="">
+                        <img src="{{player.picture}}" alt="">
                     </div>
                     <div class='content'>
                         <a class='header'>{{player.first_name}} {{player.last_name}}</a>
@@ -22,7 +20,7 @@
                             <span class='date'>{{player.nba_team}}</span>
                         </div>
                         <div class='description'>
-                            <table class='ui unstackable table'>
+                            <table class='ui unstackable inverted green table'>
                                 <tr>
                                     <th>PTS</th>
                                     <th>REB</th>
@@ -53,27 +51,33 @@
                             </form>
                         </div>
                     </div>
-                    <!-- {% endif %} -->
                     {% endfor %}
                 </div>
-                <!-- </div> -->
                 
-                    <div class='five wide column right floated'>
+                    <div class='twelve wide column right floated'>
                         <h2>Available Players</h2>
-                        <div class="five wide column right floated">
+                        <div class="ui three cards">
+                        {% if team_player_count <= 4 %}
+                       <!--  <div class="five wide column right floated"> -->
                             {% for player in players %}
                             {% if player.status == True %}
-                            <div class='ui fluid card '>
-                                <div class='image'>
-                                    <img src="" alt="">
-                                </div>
+                            <div class='ui fluid green card'>
                                 <div class='content'>
-                                    <a class='header'>{{player.first_name}} {{player.last_name}}</a>
-                                        <div class='meta'>
-                                            <span class='date'>{{player.nba_team}}</span>
-                                        </div>
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <a class='header'>{{player.first_name}} {{player.last_name}}</a>
+                                                <div class='meta'>
+                                                    <span class='date'>{{player.nba_team}}</span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <img src="{{player.picture}}" alt="">
+                                            </td>
+                                        </tr>
+                                    </table>
                                         <div class='description'>
-                                            <table id='table' class='ui table'>
+                                            <table class='ui inverted green table'>
                                                 <tr>
                                                     <th>PTS</th>
                                                     <th>REB</th>
@@ -106,39 +110,15 @@
                                     </div>
                                     {% endif %}
                                     {% endfor %}
+                                    {%else%}
+                                    <div class="ui card">
+                                        <h1 class =" ui center aligned ">Your roster is full!</h1>
+                                    </div>
+                                    {% endif %}
+                                </div>
                                 </div>
                             </div>
                     </div>
                     </div>
                     
-                    
-                    
-                    <!-- <script>
-$('.ui.sticky')
-  .sticky({
-    // offset       : 50,
-    // bottomOffset : 50,
-    context      : '#content'
-  })
-;
-</script> -->
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <h1>Welcome to Your Dream Team</h1>
-
-<h2>{{team.team_name}}</h2>
-
-{% for player in players %}
-    <p>{{ player.first_name }}</p>
-{% endfor %} -->
 {% endblock %}
