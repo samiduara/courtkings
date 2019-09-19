@@ -6,27 +6,49 @@
         <div class="row">
           <div class="three wide column">
             <h1>Leader Board</h1>
-            {% for team in owner_point_rankings%}
-            <p>{{team.team_name}} {{team.owner_points}} pts</p>
-            {% endfor %}
           </div>
           
           <div class="ten wide column">
-            <p></p>
+          <div class="ui five cards">
+
+          {% for team in teams%}
+
+            <div class="ui card">
+              <h2 class="ui center aligned" style="margin: 0; padding: 0;">{{team.team_name}}</h2>
+              <div class="ui horizontal mini red statistic">
+                  <div style="margin-left: 5px;" class="value">
+                      {{team.owner_points}}
+                  </div>
+                  <div class="label">
+                    Fantasy Points
+                  </div>
+                </div>
+                <table class='ui inverted green table'>
+                  <tr>
+                    <td><h4 style="margin: 0; padding: 0;">PTS<br style="margin: 0; padding: 0;">{{team.team_points}}</h4></td>
+                    <td><h4 style="margin: 0; padding: 0;">3PM<br style="margin: 0;">{{team.team_threepointers}}</h4></td>
+                  </tr>
+                  <tr>
+                    <td><h4 style="margin: 0; padding: 0;">RBS<br style="margin: 0; padding: 0;">{{team.team_rebounds}}</h4></td>
+                    <td><h4 style="margin: 0; padding: 0;">STL<br style="margin: 0; padding: 0;">{{team.team_steals}}</h4></td>
+                  </tr>
+                  <tr>
+                    <td><h4 style="margin: 0; padding: 0;">AST<br style="margin: 0; padding: 0;">{{team.team_assists}}</h4></td>
+                    <td><h4 style="margin: 0; padding: 0;">BLK<br style="margin: 0; padding: 0;">{{team.team_blocks}}</h4></td>
+                  </tr>
+                </table>
+            </div>
+            {% endfor %}
+          </div>
+
           </div>
           <div class="three wide column">
             <h1>Comment</h1>
           </div>
         </div>
         <div class="row">
-          <div class="three wide column">
-              <p>User Stats</p>
-          </div>
           <div class="ten wide column">
             <p></p>
-          </div>
-          <div class="three wide column">
-              <p>Trash Talk</p>
           </div>
         </div>
       </div>
