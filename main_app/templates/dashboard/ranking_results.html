@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Leader Board</h1>
+<div class='ui four cards'>
+<div class="ui red card">
+<h2>Fantasy Points</h2>
+  {% for team in owner_point_rankings%}
+  <p>{{team.team_name}} {{team.owner_points}} PTS</p>
+  {% endfor %}
+</div>
+<div class="ui green card">
+<h2>Points</h2>
+  {% for team in points_ranking%}
+  <p>{{team.team_name}} {{team.team_points}} PTS</p>
+  {% endfor %}
+</div>
+<div class="ui blue card">
+<h2>Rebounds</h2>
+  {% for team in rebounds_ranking%}
+  <p>{{team.team_name}} {{team.team_rebounds}} REB</p>
+  {% endfor %}
+</div>
+<div class="ui orange card">
+<h2>Assists</h2>
+  {% for team in assists_ranking%}
+  <p>{{team.team_name}} {{team.team_assists}} AST</p>
+  {% endfor %}
+</div>
+</div>
+<div class='ui four cards'>
+<div class="ui yellow card">
+<h2>Blocks</h2>
+  {% for team in blocks_ranking%}
+  <p>{{team.team_name}} {{team.team_blocks}} BLK</p>
+  {% endfor %}
+</div>
+<div class="ui olive card">
+<h2>Steals</h2>
+  {% for team in steals_ranking%}
+  <p>{{team.team_name}} {{team.team_steals}} STL</p>
+  {% endfor %}
+</div>
+<div class="ui teal card">
+<h2>Three Pointers</h2>
+  {% for team in threepointers_ranking%}
+  <p>{{team.team_name}} {{team.team_threepointers}} 3PM</p>
+  {% endfor %}
+</div>
+<div class="ui blue card">
+<h2>Turnovers</h2>
+  {% for team in turnovers_ranking%}
+      <p>{{team.team_name}} {{team.team_turnovers}} TO</p>
+  {% endfor %}
+</div>
+</div>
+
+{% endblock %}

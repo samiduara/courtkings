@@ -14,47 +14,17 @@ def home(request):
 
 @login_required
 def dashboard(request):
-    owner_point_rankings=Team.objects.all().order_by('-owner_points')
-    def assign_fantasy_points(list):
-        for idx, team in enumerate(list):
-            team.owner_points+=number_of_teams-idx 
-            team.save()
     try:
         team=Team.objects.get(owner_id=request.user.id)
     except Team.DoesNotExist:
         team={}
-
-
-    points_ranking=Team.objects.all().order_by('-team_points')
-    rebounds_ranking=Team.objects.all().order_by('-team_rebounds')
-    steals_ranking=Team.objects.all().order_by('-team_steals')
-    threepointers_ranking=Team.objects.all().order_by('-team_threepointers')
-    assists_ranking=Team.objects.all().order_by('-team_assists')
-    turnovers_ranking=Team.objects.all().order_by('-team_turnovers')
-    blocks_ranking=Team.objects.all().order_by('-team_blocks')
-    number_of_teams=points_ranking.count()
-    
-    assign_fantasy_points(points_ranking)
-    assign_fantasy_points(rebounds_ranking)
-    assign_fantasy_points(steals_ranking)
-    assign_fantasy_points(threepointers_ranking)
-    assign_fantasy_points(assists_ranking)
-    assign_fantasy_points(turnovers_ranking)
-    assign_fantasy_points(blocks_ranking)
-
-
-
+    try:
+        teams=Team.objects.all().order_by('-owner_points')
+    except Team.DoesNotExist:
+        teams={}
     return render(request, 'dashboard/dashboard.html',{
         'team':team,
-        'points_ranking' : points_ranking,
-        'rebounds_ranking':rebounds_ranking,
-        'steals_ranking' : steals_ranking,
-        'threepointers_ranking':threepointers_ranking,
-        'assists_ranking':assists_ranking,
-        'turnovers_ranking' : turnovers_ranking,
-        'blocks_ranking':blocks_ranking,
-        'number_of_teams': number_of_teams,
-        'owner_point_rankings' : owner_point_rankings,
+        'teams': teams,
         })
 
 def create_team(request):
@@ -71,20 +41,20 @@ def add_team(request):
         new_team.save()
     return redirect('team_detail', team_id=new_team.id)
 
-
 def team_detail(request, team_id):
     team = Team.objects.get(id=team_id)
+    team_player_count=team.players.count()
     players = Player.objects.all()
     myplayers = Player.objects.filter(owner=request.user)
     
     return render(request, 'dashboard/team_detail.html', {
         'team':team,
+        'team_player_count':team_player_count,
         'players':players,
         'myplayers':myplayers,
     })
 
 def add_player(request, team_id, player_id):
-    
     Team.objects.get(id=team_id).players.add(player_id)
     player = Player.objects.get(id=player_id)
     player.owner = request.user
@@ -135,8 +105,29 @@ def simulate_day(request):
         player.owner=None
         player.status=True
         player.save()
-    
 
+    def assign_fantasy_points(list):
+        for idx, team in enumerate(list):
+            team.owner_points+=number_of_teams-idx 
+            team.save()
+
+    points_ranking=Team.objects.all().order_by('-team_points')
+    rebounds_ranking=Team.objects.all().order_by('-team_rebounds')
+    steals_ranking=Team.objects.all().order_by('-team_steals')
+    threepointers_ranking=Team.objects.all().order_by('-team_threepointers')
+    assists_ranking=Team.objects.all().order_by('-team_assists')
+    turnovers_ranking=Team.objects.all().order_by('-team_turnovers')
+    blocks_ranking=Team.objects.all().order_by('-team_blocks')
+    number_of_teams=points_ranking.count()
+    
+    assign_fantasy_points(points_ranking)
+    assign_fantasy_points(rebounds_ranking)
+    assign_fantasy_points(steals_ranking)
+    assign_fantasy_points(threepointers_ranking)
+    assign_fantasy_points(assists_ranking)
+    assign_fantasy_points(turnovers_ranking)
+    assign_fantasy_points(blocks_ranking)
+    
     return redirect('dashboard')
 
 def results(request):
@@ -148,35 +139,53 @@ def results(request):
         days.append(day + 1)
     print(games[34].owner, teams[2].owner)
 
-
+    try:
+        team=Team.objects.get(owner_id=request.user.id)
+    except Team.DoesNotExist:
+        team={}
 
     return render(request, 'dashboard/results.html', {
+        'team':team,
         'teams':teams,
         'games':games,
         'days':days,
     })
-
-""" def dayresults(request):
-    teams=Team.objects.all()
-    games=Game.objects.all()
-    day=Day.objects.get()
-    days=[]
-    for day in range(day.day_counter):
-        days.append(day + 1)
-    print(days)
-
-    return render(request, 'dashboard/results.html', {
-        'teams':teams,
-        'games':games,
-        'days':days,
-        'selected_day': day_num,
-    }) """
 
 def start_league(request):
     day = Day.objects.create()
     day.day_counter=0
     day.save()
     return redirect('dashboard')
+
+def ranking_results(request):
+    owner_point_rankings=Team.objects.all().order_by('-owner_points')
+
+    points_ranking=Team.objects.all().order_by('-team_points')
+    rebounds_ranking=Team.objects.all().order_by('-team_rebounds')
+    steals_ranking=Team.objects.all().order_by('-team_steals')
+    threepointers_ranking=Team.objects.all().order_by('-team_threepointers')
+    assists_ranking=Team.objects.all().order_by('-team_assists')
+    turnovers_ranking=Team.objects.all().order_by('-team_turnovers')
+    blocks_ranking=Team.objects.all().order_by('-team_blocks')
+    number_of_teams=points_ranking.count()
+
+    try:
+        team=Team.objects.get(owner_id=request.user.id)
+    except Team.DoesNotExist:
+        team={}
+
+    return render(request, 'dashboard/ranking_results.html',{
+        'team':team,
+        'points_ranking' : points_ranking,
+        'rebounds_ranking':rebounds_ranking,
+        'steals_ranking' : steals_ranking,
+        'threepointers_ranking':threepointers_ranking,
+        'assists_ranking':assists_ranking,
+        'turnovers_ranking' : turnovers_ranking,
+        'blocks_ranking':blocks_ranking,
+        'number_of_teams': number_of_teams,
+        'owner_point_rankings' : owner_point_rankings,
+        })
 
 def signup(request):
     error_message=''
