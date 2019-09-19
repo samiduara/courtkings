@@ -14,48 +14,11 @@ def home(request):
 
 @login_required
 def dashboard(request):
-    owner_point_rankings=Team.objects.all().order_by('-owner_points')
-    def assign_fantasy_points(list):
-        for idx, team in enumerate(list):
-            team.owner_points+=number_of_teams-idx 
-            team.save()
     try:
         team=Team.objects.get(owner_id=request.user.id)
     except Team.DoesNotExist:
         team={}
-
-
-    points_ranking=Team.objects.all().order_by('-team_points')
-    rebounds_ranking=Team.objects.all().order_by('-team_rebounds')
-    steals_ranking=Team.objects.all().order_by('-team_steals')
-    threepointers_ranking=Team.objects.all().order_by('-team_threepointers')
-    assists_ranking=Team.objects.all().order_by('-team_assists')
-    turnovers_ranking=Team.objects.all().order_by('-team_turnovers')
-    blocks_ranking=Team.objects.all().order_by('-team_blocks')
-    number_of_teams=points_ranking.count()
-    
-    assign_fantasy_points(points_ranking)
-    assign_fantasy_points(rebounds_ranking)
-    assign_fantasy_points(steals_ranking)
-    assign_fantasy_points(threepointers_ranking)
-    assign_fantasy_points(assists_ranking)
-    assign_fantasy_points(turnovers_ranking)
-    assign_fantasy_points(blocks_ranking)
-
-
-
-    return render(request, 'dashboard/dashboard.html',{
-        'team':team,
-        'points_ranking' : points_ranking,
-        'rebounds_ranking':rebounds_ranking,
-        'steals_ranking' : steals_ranking,
-        'threepointers_ranking':threepointers_ranking,
-        'assists_ranking':assists_ranking,
-        'turnovers_ranking' : turnovers_ranking,
-        'blocks_ranking':blocks_ranking,
-        'number_of_teams': number_of_teams,
-        'owner_point_rankings' : owner_point_rankings,
-        })
+    return render(request, 'dashboard/dashboard.html')
 
 def create_team(request):
     team_form = TeamForm()
@@ -178,6 +141,42 @@ def start_league(request):
     day.save()
     return redirect('dashboard')
 
+def ranking_results(request):
+    owner_point_rankings=Team.objects.all().order_by('-owner_points')
+    def assign_fantasy_points(list):
+        for idx, team in enumerate(list):
+            team.owner_points+=number_of_teams-idx 
+            team.save()
+
+    points_ranking=Team.objects.all().order_by('-team_points')
+    rebounds_ranking=Team.objects.all().order_by('-team_rebounds')
+    steals_ranking=Team.objects.all().order_by('-team_steals')
+    threepointers_ranking=Team.objects.all().order_by('-team_threepointers')
+    assists_ranking=Team.objects.all().order_by('-team_assists')
+    turnovers_ranking=Team.objects.all().order_by('-team_turnovers')
+    blocks_ranking=Team.objects.all().order_by('-team_blocks')
+    number_of_teams=points_ranking.count()
+    
+    assign_fantasy_points(points_ranking)
+    assign_fantasy_points(rebounds_ranking)
+    assign_fantasy_points(steals_ranking)
+    assign_fantasy_points(threepointers_ranking)
+    assign_fantasy_points(assists_ranking)
+    assign_fantasy_points(turnovers_ranking)
+    assign_fantasy_points(blocks_ranking)
+
+    return render(request, 'dashboard/ranking_results.html',{
+        # 'team':team,
+        'points_ranking' : points_ranking,
+        'rebounds_ranking':rebounds_ranking,
+        'steals_ranking' : steals_ranking,
+        'threepointers_ranking':threepointers_ranking,
+        'assists_ranking':assists_ranking,
+        'turnovers_ranking' : turnovers_ranking,
+        'blocks_ranking':blocks_ranking,
+        'number_of_teams': number_of_teams,
+        'owner_point_rankings' : owner_point_rankings,
+        })
 def signup(request):
     error_message=''
     if request.method == 'POST':
