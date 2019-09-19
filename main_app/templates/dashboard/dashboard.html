@@ -9,7 +9,34 @@
           </div>
           
           <div class="ten wide column">
-            <p></p>
+          <div class="ui five cards">
+
+
+          {% for team in teams%}
+
+            <div class="ui card">
+              <h2 style="margin: 0; padding: 0;">{{team.team_name}}</h2>
+              <div class="ui horizontal mini red statistic">
+                  <div class="value">
+                      {{team.owner_points}}
+                  </div>
+                  <div class="label">
+                    Fantasy Points
+                  </div>
+                </div>
+                <h4 style="margin: 0; padding: 0;">{{team.team_points}} PTS</h4>
+                <h4 style="margin: 0; padding: 0;">{{team.team_threepointers}} 3PM</h4>
+                <h4 style="margin: 0; padding: 0;">{{team.team_rebounds}} RBS</h4>
+                <h4 style="margin: 0; padding: 0;">{{team.team_steals}} STL</h4>
+              <h4 style="margin: 0; padding: 0;">{{team.team_assists}} AST</h4>
+              <h4 style="margin: 0; padding: 0;">{{team.team_blocks}} BLK</h4>
+              <h4 style="margin: 0; padding: 0;">{{team.team_turnovers}} TO</h4>
+              
+            </div>
+
+            {% endfor %}
+          </div>
+
           </div>
           <div class="three wide column">
             <h1>Comment</h1>
