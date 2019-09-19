@@ -137,7 +137,6 @@ def results(request):
     days=[]
     for day in range(day.day_counter):
         days.append(day + 1)
-    print(games[34].owner, teams[2].owner)
 
     try:
         team=Team.objects.get(owner_id=request.user.id)
