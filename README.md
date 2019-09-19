@@ -1,3 +1,7 @@
+![Login page](https://i.imgur.com/oY4uNYT.png)
+![Sign up page](https://i.imgur.com/uSiHcSh.png)
+![Adding players](https://i.imgur.com/grAsn49.png)
+![Adding Teams](https://i.imgur.com/cTgBYaM.png)
 # Fantasy Basketball App
 
 ## Our Goal
