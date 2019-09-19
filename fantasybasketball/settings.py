@@ -79,6 +79,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'fantasybasketball',
+        'USER': 'postgres',
+        'PASSWORD': 'root',
     }
 }
 
