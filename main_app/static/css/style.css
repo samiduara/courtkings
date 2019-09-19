@@ -33,3 +33,7 @@ footer {
     width:100vh;
 }
 
+img {
+    height: 50px;
+    border-radius: 10px;
+}
