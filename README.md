@@ -11,6 +11,16 @@
 #### Cole 
 ###### Scrum master, GitHub manager, Documenter, API manager
 
+## Models
+
+![Drag Racing](https://i.imgur.com/OZbIp3y.png)
+![Drag Racing](https://i.imgur.com/9Ww2sMX.png)
+![Drag Racing](https://i.imgur.com/1AwiBS0.png)
+![Drag Racing](https://i.imgur.com/LlZwa9e.png)
+![Drag Racing](https://i.imgur.com/FqWrUtY.png)
+![Drag Racing](https://i.imgur.com/fkADiSG.png)
+
+
 
 ## Resources
 ###### 1. [Trello Board](https://trello.com/b/UGYE7yuI/project-3-team-bravo)
