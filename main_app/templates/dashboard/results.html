@@ -19,8 +19,16 @@
                     {% if game.owner  == team.owner %}
                         <div class="ui card">
                             <table>
-                                <h5 style="margin: 0">{{game.player.first_name}} {{game.player.last_name}}</h5>
-                                <h6 style="margin: 0">{{game.player.nba_team}}</h6>
+                                <tr>
+                                    <td>                                
+                                        <h5 style="margin: 0">{{game.player.first_name}} {{game.player.last_name}}</h5>
+                                        <h6 style="margin: 0">{{game.player.nba_team}}</h6>
+                                    </td>
+                                    <td>
+                                        <img src="{{game.player.picture}}" alt="">
+                                    </td>
+                                </tr>
+
                                 <tr>
                                     <td>PTS</td>
                                     <td>3PM</td>
