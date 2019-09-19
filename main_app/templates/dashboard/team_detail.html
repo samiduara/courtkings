@@ -7,12 +7,12 @@
         <h1>Welcome To Your Dream Team!</h1>
     </div>
     <div class='ui left aligned grid'>
-        <div class="eight wide column left floated">
+        <div class="four wide column left floated">
                 <h2>{{team.team_name}}</h2>
                 {% for player in myplayers %}
                 <div class='ui fluid card'>
                     <div class='image'>
-                        <img src="" alt="">
+                        <img src="{{player.picture}}" alt="">
                     </div>
                     <div class='content'>
                         <a class='header'>{{player.first_name}} {{player.last_name}}</a>
@@ -54,15 +54,16 @@
                     {% endfor %}
                 </div>
                 
-                    <div class='five wide column right floated'>
+                    <div class='twelve wide column right floated'>
                         <h2>Available Players</h2>
+                        <div class="ui two cards">
                         {% if team_player_count <= 4 %}
                         <div class="five wide column right floated">
                             {% for player in players %}
                             {% if player.status == True %}
                             <div class='ui fluid green card'>
                                 <div class='image'>
-                                    <img src="" alt="">
+                                    <img src="{{player.picture}}" alt="">
                                 </div>
                                 <div class='content'>
                                     <a class='header'>{{player.first_name}} {{player.last_name}}</a>
@@ -108,6 +109,7 @@
                                         <h1 class =" ui center aligned ">Your roster is full!</h1>
                                     </div>
                                     {% endif %}
+                                </div>
                                 </div>
                             </div>
                     </div>
