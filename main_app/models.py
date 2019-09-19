@@ -18,7 +18,7 @@ class Player(models.Model):
   threepointer_rating=models.IntegerField(null=True)
   status=models.BooleanField(null=True) #True means player available / False Player is taken
   owner = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-  picture=models.CharField(null=True)
+  picture=models.CharField(max_length=500, null=True)
   def __str__(self):
     return f'{self.first_name} {self.last_name}'
   
